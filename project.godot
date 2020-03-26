@@ -16,7 +16,6 @@ _global_script_class_icons={
 [application]
 
 config/name="Real-Time DCG"
-run/main_scene="res://Board.tscn"
 config/icon="res://icon.png"
 
 [rendering]
