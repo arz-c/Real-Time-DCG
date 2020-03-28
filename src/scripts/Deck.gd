@@ -1,19 +1,19 @@
 extends Node2D
 class_name Deck
 
-var total_cards: = 30
+const _CARD_GAP = 1
+
 var cards: = []
- 
-const _CARD_GAP: = 1
+var _total_cards: int
 var _card_template: = preload("res://src/scenes/Card.tscn")
 
-func _init(pos: Vector2, total_cards_: int) -> void:
+func _init(pos: Vector2, total_cards: int) -> void:
 	set_position(pos)
-	total_cards = total_cards_
+	_total_cards = total_cards
 
 func _ready() -> void:
 	print("deck ready")
-	for i in range(total_cards):
+	for i in range(_total_cards):
 		var card: = _card_template.instance()
 		var pos: = self.get_position()
 		pos.y += i * _CARD_GAP
@@ -21,12 +21,7 @@ func _ready() -> void:
 		add_child(card)
 		cards.append(card)
 
-func get_top_card(new_parent) -> Card:
+func get_top_card() -> Card:
 	var out = cards.pop_back()
-	call_deferred("reparent", out, new_parent)
 	print("[deck] popped card, ", out)
 	return out
-
-func reparent(node, parent):
-	node.get_parent().remove_child(node)
-	parent.add_child(node) 

@@ -9,23 +9,15 @@ export var mv_spd: = 3
 export var atk_spd: = 1
 export var atk: = 5
 
-var is_anim: bool = false
 var _vel: = Vector2.ZERO
+signal movement_anim_finished
 
 func _ready() -> void:
 	_setup_card()
-	$AnimationPlayer.connect("animation_started", self, "on_AnimationPlayer_animation_started")
-	$AnimationPlayer.connect("animation_finished", self, "on_AnimationPlayer_animation_finished")
 	set_process(true)
 
 func _process(delta: float) -> void:
 	translate(_vel * delta)
-
-func on_AnimationPlayer_animation_started(_anim_name: String) -> void:
-	is_anim = true
-	
-func on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-	is_anim = false
 	
 func _setup_card() -> void:
 	$CardFront/Image.set_texture(image)
@@ -38,6 +30,9 @@ func _setup_card() -> void:
 
 func set_vel(vel: Vector2) -> void:
 	_vel = vel
+
+func emit_movement_anim_finished_signal() -> void:
+	emit_signal("movement_anim_finished")
 
 func get_width():
 	return $CardFront/Frame.get_rect().size.x
