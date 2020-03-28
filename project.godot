@@ -8,16 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://src/scripts/Card.gd"
+}, {
+"base": "Node2D",
+"class": "Deck",
+"language": "GDScript",
+"path": "res://src/scripts/Deck.gd"
+}, {
+"base": "Node2D",
+"class": "Hand",
+"language": "GDScript",
+"path": "res://src/scripts/Hand.gd"
+} ]
 _global_script_class_icons={
-
+"Card": "",
+"Deck": "",
+"Hand": ""
 }
 
 [application]
 
 config/name="Real-Time DCG"
-run/main_scene="res://Card.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://src/scenes/Game.tscn"
 
 [rendering]
 
