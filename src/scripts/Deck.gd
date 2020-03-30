@@ -1,11 +1,12 @@
 extends Node2D
 class_name Deck
 
+const _CARD_SCENE = preload("res://src/scenes/Card.tscn")
 const _CARD_GAP = 1
+const _CARD_SCALE = 0.5
 
 var cards: = []
 var _total_cards: int
-var _card_template: = preload("res://src/scenes/Card.tscn")
 
 func _init(pos: Vector2, total_cards: int, angle: int) -> void:
 	set_position(pos)
@@ -14,10 +15,10 @@ func _init(pos: Vector2, total_cards: int, angle: int) -> void:
 
 func _ready() -> void:
 	for i in range(_total_cards):
-		var card: = _card_template.instance()
-		#var pos: = self.get_position() + i * _CARD_GAP
+		var card: = _CARD_SCENE.instance()
 		var pos: = Vector2(0, i * _CARD_GAP)
 		card.set_position(pos)
+		card.set_scale(Vector2(_CARD_SCALE, _CARD_SCALE))
 		add_child(card)
 		cards.append(card)
 

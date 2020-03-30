@@ -5,7 +5,6 @@
 [ext_resource path="res://src/fonts/no_game_no_life.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/fonts/Blacklisted.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://src/sprites/card_back.png" type="Texture" id=5]
-[ext_resource path="res://src/anims/front_to_back.tres" type="Animation" id=6]
 [ext_resource path="res://src/scripts/Card.gd" type="Script" id=7]
 
 [sub_resource type="Animation" id=1]
@@ -48,6 +47,45 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "Frame"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0, 0.5 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CardFront:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CardBack:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
 [sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 3 )
@@ -70,7 +108,7 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.5
 anims/back_to_front = SubResource( 1 )
-anims/front_to_back = ExtResource( 6 )
+anims/front_to_back = SubResource( 5 )
 
 [node name="CardFront" type="Node2D" parent="."]
 visible = false
