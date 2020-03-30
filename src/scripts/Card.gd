@@ -9,15 +9,16 @@ export var mv_spd: = 3
 export var atk_spd: = 1
 export var atk: = 5
 
-var _vel: = Vector2.ZERO
 signal movement_anim_finished
+var _vel: = Vector2.ZERO
+var override_delta: = false
 
 func _ready() -> void:
 	_setup_card()
 	set_process(true)
 
 func _process(delta: float) -> void:
-	translate(_vel * delta)
+	translate(_vel if override_delta else _vel * delta)
 	
 func _setup_card() -> void:
 	$CardFront/Image.set_texture(image)
@@ -30,6 +31,12 @@ func _setup_card() -> void:
 
 func set_vel(vel: Vector2) -> void:
 	_vel = vel
+
+func get_vel() -> Vector2:
+	return _vel
+
+func set_override_delta(val: bool) -> void:
+	override_delta = val
 
 func emit_movement_anim_finished_signal() -> void:
 	emit_signal("movement_anim_finished")
