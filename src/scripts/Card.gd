@@ -2,12 +2,12 @@ extends Node2D
 class_name Card
 
 export(StreamTexture) var image: = preload("res://src/sprites/img.jpg")
-export var title: = "Name"
-export var description: = "This card kills all units, and revives both faces"
-export var hp: = 2
-export var mv_spd: = 3
-export var atk_spd: = 1
-export var atk: = 5
+var file = File.new()
+file.open("res://cards.json", file.READ)
+var text = file.get_as_text()
+parse = JSON.parse(text)
+classDict = parse.result
+file.close()
 
 const _FLIP_SPEED = 0.05
 
