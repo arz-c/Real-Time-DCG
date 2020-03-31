@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/img.jpg-23e11fac3e5c4025a2dcb283be728122.stex"
+path="res://.import/tower.png-eae566943b9620ae0e1cea1a7742c6c1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/sprites/img.jpg"
-dest_files=[ "res://.import/img.jpg-23e11fac3e5c4025a2dcb283be728122.stex" ]
+source_file="res://src/sprites/board/tower.png"
+dest_files=[ "res://.import/tower.png-eae566943b9620ae0e1cea1a7742c6c1.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

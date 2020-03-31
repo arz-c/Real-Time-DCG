@@ -5,7 +5,6 @@ const _CARD_VISIBLE_AREA = 100
 const _CARD_MOVE_SPEED = 1000
 
 var cards: = []
-var _anim_card: = null
 var angle: = 0
 
 func _init(pos: Vector2, angle_: int) -> void:
@@ -16,9 +15,8 @@ func _add_card(card: Card) -> void:
 	cards.append(card)
 	card.rotate(deg2rad(angle))
 	
-	# Animations
+	# Animation
 	card.play_flip_anim(true)
-	_anim_card = card
 	
 	# Calculations for new pos
 	var card_width: float = card.get_width()

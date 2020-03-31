@@ -1,14 +1,6 @@
 extends Node2D
 class_name Card
 
-export(StreamTexture) var image: = preload("res://src/sprites/img.jpg")
-var file = File.new()
-file.open("res://cards.json", file.READ)
-var text = file.get_as_text()
-parse = JSON.parse(text)
-classDict = parse.result
-file.close()
-
 const _FLIP_SPEED = 0.05
 
 signal movement_anim_finished
@@ -23,13 +15,14 @@ func _ready() -> void:
 	_max_scale = get_scale().x
 	# warning-ignore:return_value_discarded
 	connect("movement_anim_finished", self, "on_movement_anim_finished")
-	$CardFront/Image.set_texture(image)
-	$CardFront/Title.set_text(title)
-	$CardFront/Description.set_text(description)
-	$CardFront/HP.set_text(String(hp))
-	$CardFront/MvSpd.set_text(String(mv_spd))
-	$CardFront/AtkSpd.set_text(String(atk_spd))
-	$CardFront/Atk.set_text(String(atk))
+	var data = Global.CARDS_DATA[0]
+	$CardFront/Image.set_texture(load(data["info"]["image"]))
+	$CardFront/Title.set_text(data["info"]["name"])
+	$CardFront/Description.set_text(data["info"]["desc"])
+	$CardFront/HP.set_text(String(data["stats"]["hp"]))
+	$CardFront/MvSpd.set_text(String(data["stats"]["mv_spd"]))
+	$CardFront/AtkSpd.set_text(String(data["stats"]["atk_spd"]))
+	$CardFront/Atk.set_text(String(data["stats"]["atk"]))
 	set_process(false)
 	
 func _process(delta: float) -> void:

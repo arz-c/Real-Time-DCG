@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/sprites/board/tower.png" type="Texture" id=1]
+[ext_resource path="res://src/scripts/Tower.gd" type="Script" id=2]
+
+[node name="Tower" type="Node2D"]
+position = Vector2( 188, 400 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Image" type="Sprite" parent="."]
+scale = Vector2( 0.666667, 0.666667 )
+texture = ExtResource( 1 )

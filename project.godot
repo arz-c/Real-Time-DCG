@@ -23,17 +23,27 @@ _global_script_classes=[ {
 "class": "Hand",
 "language": "GDScript",
 "path": "res://src/scripts/Hand.gd"
+}, {
+"base": "Node2D",
+"class": "Tower",
+"language": "GDScript",
+"path": "res://src/scripts/Tower.gd"
 } ]
 _global_script_class_icons={
 "Card": "",
 "Deck": "",
-"Hand": ""
+"Hand": "",
+"Tower": ""
 }
 
 [application]
 
 config/name="Real-Time DCG"
 run/main_scene="res://src/scenes/Game.tscn"
+
+[autoload]
+
+Global="*res://src/scripts/Global.gd"
 
 [rendering]
 

@@ -1,0 +1,34 @@
+[
+    {
+        "type": "UNIT",
+        "info": {
+            "name": "Test Name",
+            "desc": "One time for the one time",
+            "class": "Time Control",
+            "image": "res://src/sprites/card_sprites/img.jpg",
+            "emblems": null
+        },
+        "stats": {
+            "cost": 4,
+            "hp": 2,
+            "mv_spd": 4,
+            "atk_spd": 1,
+            "atk": 5
+        }
+    },
+    {
+        "type": "SPELL",
+        "info": {
+            "name": "Sans from iCarly",
+            "desc": "Test Description",
+            "class": "Ninjas",
+            "image": "res://src/sprites/card_sprites/character.png"
+        },
+        "action": {
+            "damage": 3,
+            "cast_spd": 1.5,
+            "num_of_targets": 2,
+            "selectable_targets": false
+        }
+    }
+]
