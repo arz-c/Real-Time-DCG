@@ -2,8 +2,11 @@ extends Node2D
 class_name Card
 
 const _FLIP_SPEED = 0.05
+const _ENLARGE_SPEED = 1500
 
 signal movement_anim_finished
+var pre_enlarged_pos = null
+var in_hand = false
 var _vel: = Vector2.ZERO
 var _override_delta: = false
 var _max_scale: = 0.5
@@ -49,11 +52,13 @@ func flip_anim() -> void:
 				_flipping_state = 0
 	
 func move_to_dest(delta) -> void:
-	if abs(_dest.x - get_position().x) < abs(_vel.x * delta) or abs(_dest.y - get_position().y) < abs(_vel.y * delta):
+	if pre_enlarged_pos != null:
+		set_z_index(2)
+	if abs(_dest.x - get_global_position().x) < abs(_vel.x * delta) or abs(_dest.y - get_global_position().y) < abs(_vel.y * delta):
 		# Reducing vel to compensate for overshoot 
-		_vel = _dest - get_position()
+		_vel = _dest - get_global_position()
 		_override_delta = true
-	elif get_position().distance_to(_dest) == 0:
+	elif get_global_position().distance_to(_dest) == 0:
 		# Movement finished
 		_vel = Vector2.ZERO
 		emit_signal("movement_anim_finished")
@@ -64,7 +69,7 @@ func on_movement_anim_finished() -> void:
 		set_process(false)
 
 func set_dest(dest_: Vector2, speed: float) -> void:
-	_vel = (dest_ - get_position()).normalized() * speed
+	_vel = (dest_ - get_global_position()).normalized() * speed
 	_dest = dest_
 	set_process(true)
 
@@ -75,3 +80,14 @@ func play_flip_anim(to_front: bool) -> void:
 	_flip_to_front = to_front
 	_flipping_state = 1
 	set_process(true)
+
+func enlarge() -> void:
+	pre_enlarged_pos = get_global_position()
+	$AnimationPlayer.play("enlarge")
+	set_dest(Global.WINDOW_SIZE / 2, _ENLARGE_SPEED)
+
+func smallen() -> void:
+	set_z_index(0)
+	$AnimationPlayer.play("smallen")
+	set_dest(pre_enlarged_pos, _ENLARGE_SPEED)
+	pre_enlarged_pos = null

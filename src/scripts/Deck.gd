@@ -3,7 +3,6 @@ class_name Deck
 
 const _CARD_SCENE = preload("res://src/scenes/Card.tscn")
 const _CARD_GAP = 1
-const _CARD_SCALE = 0.5
 
 var cards: = []
 var _total_cards: int
@@ -18,7 +17,7 @@ func _ready() -> void:
 		var card: = _CARD_SCENE.instance()
 		var pos: = Vector2(0, i * _CARD_GAP)
 		card.set_position(pos)
-		card.set_scale(Vector2(_CARD_SCALE, _CARD_SCALE))
+		card.set_scale(Vector2(Global.CARD_SCALE, Global.CARD_SCALE))
 		add_child(card)
 		cards.append(card)
 
